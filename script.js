@@ -26,17 +26,20 @@ function changeStyle(event) {
 }
 
 function createLetter() {
-  const content = letterText.value.match(/\w+/g);
+  let content = letterText.value.match(/\w+/g);
   if (content === null) {
     letter.innerText = 'Por favor, digite o conteúdo da carta.';
   } else {
     letter.innerHTML = '';
+    content = letterText.value.split(/[\t\s\n]/i);
     for (let index = 0; index < content.length; index += 1) {
-      const word = document.createElement('span');
-      word.innerText = content[index];
-      word.addEventListener('click', changeStyle);
-      word.className = randonClasses();
-      letter.appendChild(word);
+      if (content[index] !== '') {
+        const word = document.createElement('span');
+        word.innerText = content[index];
+        word.addEventListener('click', changeStyle);
+        word.className = randonClasses();
+        letter.appendChild(word);
+      } 
     }
     contWords.innerText = content.length;
   }
@@ -49,3 +52,28 @@ createButton.addEventListener('click', createLetter);
 // de ações de inicialização
 
 contWords.innerText = '0';
+
+function stringSplit() {
+    var str = "Expressões   regulares em JavaScript na DevMedia!";
+    var n = str.split(/[\t\s\n]/i);
+    alert(n);
+    console.log(n);
+  }
+
+stringSplit();
+
+function splitSentence(sentence) {
+    // let word = '';
+    // let sentenceSplited = [];
+    // for (let index in sentence) {
+    //   if (sentence[index] !== ' ') {
+    //     word += sentence[index];
+    //     index += 1;
+    //   } else if (word !== '' || index === sentence.length - 1) {
+    //     sentenceSplited.push(word);
+    //     word = '';
+    //   }
+    // }
+    // sentenceSplited.push(word);
+    // return sentenceSplited;
+  }
