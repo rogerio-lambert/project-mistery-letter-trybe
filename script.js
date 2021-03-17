@@ -7,11 +7,7 @@ const contWords = document.getElementById('carta-contador');
 
 // Bloco de declaração de funções
 
-function changeStyle() {
-
-}
-
-function randonCasses() {
+function randonClasses() {
   let classes = '';
   const style = ['newspaper', 'magazine1', 'magazine2'];
   const size = ['', ' medium', ' big', ' reallybig'];
@@ -21,8 +17,12 @@ function randonCasses() {
   classes += size[Math.round(Math.random() * 3)];
   classes += rotetion[Math.round(Math.random() * 2)];
   classes += inclination[Math.round(Math.random() * 2)];
-
   return classes;
+}
+
+function changeStyle(event) {
+  const wordToChanged = event.target;
+  wordToChanged.className = randonClasses();
 }
 
 function createLetter() {
@@ -35,7 +35,7 @@ function createLetter() {
       const word = document.createElement('span');
       word.innerText = content[index];
       word.addEventListener('click', changeStyle);
-      word.className = randonCasses();
+      word.className = randonClasses();
       letter.appendChild(word);
     }
     contWords.innerText = content.length;
