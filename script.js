@@ -2,7 +2,8 @@
 
 const letterText = document.getElementById('carta-texto');
 const letter = document.getElementById('carta-gerada');
-const createButton = document.getElementById('cria-carta');
+const createButton = document.getElementById('criar-carta');
+const contWords = document.getElementById('carta-contador');
 
 // Bloco de declaração de funções
 
@@ -20,6 +21,7 @@ function randonCasses() {
   classes += size[Math.round(Math.random() * 3)];
   classes += rotetion[Math.round(Math.random() * 2)];
   classes += inclination[Math.round(Math.random() * 2)];
+
   return classes;
 }
 
@@ -28,6 +30,7 @@ function createLetter() {
   if (content === null) {
     letter.innerText = 'Por favor, digite o conteúdo da carta.';
   } else {
+    letter.innerHTML = '';
     for (let index = 0; index < content.length; index += 1) {
       const word = document.createElement('span');
       word.innerText = content[index];
@@ -35,6 +38,7 @@ function createLetter() {
       word.className = randonCasses();
       letter.appendChild(word);
     }
+    contWords.innerText = content.length;
   }
 }
 
@@ -43,3 +47,5 @@ function createLetter() {
 createButton.addEventListener('click', createLetter);
 
 // de ações de inicialização
+
+contWords.innerText = '0';
