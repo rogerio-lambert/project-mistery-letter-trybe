@@ -31,7 +31,8 @@ function createLetter() {
     letter.innerText = 'Por favor, digite o conteúdo da carta.';
   } else {
     letter.innerHTML = '';
-    content = letterText.value.split(/[\t\s\n]/i);
+    content = letterText.value.split(/\s/i);
+    console.log(content);
     for (let index = 0; index < content.length; index += 1) {
       if (content[index] !== '') {
         const word = document.createElement('span');
@@ -39,7 +40,7 @@ function createLetter() {
         word.addEventListener('click', changeStyle);
         word.className = randonClasses();
         letter.appendChild(word);
-      } 
+      }
     }
     contWords.innerText = content.length;
   }
